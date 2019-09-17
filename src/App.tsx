@@ -1,5 +1,5 @@
 import React, { FunctionComponent, Fragment } from 'react';
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './App.scss';
 import { Header } from './components/layout';
 import { Dashboard } from './components/leads';
