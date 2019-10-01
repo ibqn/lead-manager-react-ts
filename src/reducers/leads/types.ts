@@ -1,5 +1,5 @@
 export interface Lead {
-  pk: number;
+  id: number;
   name: string;
   email: string;
   message: string;
