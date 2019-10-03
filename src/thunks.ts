@@ -1,9 +1,9 @@
 import { Action } from 'redux';
 import { ThunkAction } from 'redux-thunk';
-import { getLeads } from './reducers/leads/actions';
+import { getLeads, deleteLead } from './reducers/leads/actions';
 import { AppState } from './store';
 import axios from 'axios';
-import { LeadActionTypes, Lead } from './reducers/leads/types';
+import { Lead } from './reducers/leads/types';
 
 export const thunkGetLeads = (): ThunkAction<
   void,
@@ -16,6 +16,17 @@ export const thunkGetLeads = (): ThunkAction<
     const data = asyncResp.data as Lead[];
     dispatch(getLeads(data));
   } catch (error) {
-    console.log(`error {error}`);
+    console.log(`error ${error}`);
+  }
+};
+
+export const thunkDeleteLead = (
+  id: number
+): ThunkAction<void, AppState, null, Action<string>> => async dispatch => {
+  try {
+    const asyncResp = await axios.delete(`/api/leads/${id}/`);
+    dispatch(deleteLead(id));
+  } catch (error) {
+    console.log(`error ${error}`);
   }
 };

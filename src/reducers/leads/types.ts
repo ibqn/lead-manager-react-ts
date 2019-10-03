@@ -11,10 +11,16 @@ export interface LeadsState {
 }
 
 export const GET_LEADS = 'GET_LEADS';
+export const DETELE_LEAD = 'DELETE_LEAD';
 
 interface GetLeadsAction {
   type: typeof GET_LEADS;
   payload: Lead[];
 }
 
-export type LeadActionTypes = GetLeadsAction;
+interface DeleteLeadAction {
+  type: typeof DETELE_LEAD;
+  payload: number;
+}
+
+export type LeadActionTypes = GetLeadsAction | DeleteLeadAction;

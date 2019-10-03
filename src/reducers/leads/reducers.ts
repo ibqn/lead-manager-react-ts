@@ -1,4 +1,4 @@
-import { GET_LEADS, LeadsState, LeadActionTypes } from './types';
+import { GET_LEADS, DETELE_LEAD, LeadsState, LeadActionTypes } from './types';
 
 const initialState: LeadsState = {
   leads: []
@@ -13,6 +13,11 @@ export function LeadReducer(
       return {
         ...state,
         leads: action.payload
+      };
+    case DETELE_LEAD:
+      return {
+        ...state,
+        leads: state.leads.filter(lead => lead.id !== action.payload)
       };
     default:
       return state;

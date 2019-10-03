@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { AppState } from '../../store';
 import { LeadsState } from '../../reducers/leads/types';
-import { thunkGetLeads } from '../../thunks';
+import { thunkGetLeads, thunkDeleteLead } from '../../thunks';
 
 interface LeadsProps {
   thunkGetLeads: any;
+  thunkDeleteLead: any;
   leads: LeadsState;
 }
 
@@ -36,7 +37,12 @@ export class Leads extends Component<LeadsProps> {
                 <td>{lead.email}</td>
                 <td>{lead.message}</td>
                 <td>
-                  <button className="btn btn-danger btn-sm">Delete</button>
+                  <button
+                    onClick={() => this.props.thunkDeleteLead(lead.id)}
+                    className="btn btn-danger btn-sm"
+                  >
+                    Delete
+                  </button>
                 </td>
               </tr>
             ))}
@@ -53,5 +59,5 @@ const mapStateToProps = (state: AppState) => ({
 
 export default connect(
   mapStateToProps,
-  { thunkGetLeads }
+  { thunkGetLeads, thunkDeleteLead }
 )(Leads);
