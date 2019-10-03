@@ -1,10 +1,9 @@
 import React, { Component, FormEvent, ChangeEvent } from 'react';
+import { LeadShallow } from '../../reducers/leads/types';
+import { connect } from 'react-redux';
+import { thunkAddLead } from '../../thunks';
 
-interface FormState {
-  name: string;
-  email: string;
-  message: string;
-}
+interface FormState extends LeadShallow {}
 
 interface FormProps {
   thunkAddLead: any;
@@ -21,7 +20,10 @@ export class Form extends Component<FormProps, FormState> {
     } as FormState;
   }
 
-  onSubmit = (e: FormEvent) => {};
+  onSubmit = (e: FormEvent) => {
+    e.preventDefault();
+    this.props.thunkAddLead(this.state);
+  };
 
   onChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
     this.setState({
@@ -75,4 +77,7 @@ export class Form extends Component<FormProps, FormState> {
   }
 }
 
-export default Form;
+export default connect(
+  null,
+  { thunkAddLead }
+)(Form);
