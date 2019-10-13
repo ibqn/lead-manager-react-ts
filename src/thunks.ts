@@ -17,6 +17,7 @@ export const thunkGetLeads = (): ThunkAction<
     dispatch(getLeads(data));
   } catch (error) {
     console.log(`error ${error}`);
+    console.log(`error response ${error.response.data}`);
   }
 };
 
@@ -40,5 +41,6 @@ export const thunkAddLead = (
     dispatch(addLead(data));
   } catch (error) {
     console.log(`error ${error}`);
+    console.log('error response', error.response.data);
   }
 };
