@@ -7,7 +7,7 @@ export interface ErrorMessage {
 }
 
 export interface ErrorState {
-  mgs: ErrorMessage;
+  msg: ErrorMessage;
   status: null | number;
 }
 
