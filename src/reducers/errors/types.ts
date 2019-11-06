@@ -8,7 +8,7 @@ export interface ErrorMessage {
 
 export interface ErrorState {
   msg: ErrorMessage;
-  status: null | number;
+  status: undefined | number;
 }
 
 export const GET_ERRORS = 'GET_ERRORS';

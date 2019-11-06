@@ -2,10 +2,13 @@ import { GET_ERRORS, ErrorState, ErrorActionTypes } from './types';
 
 const initialState: ErrorState = {
   msg: {},
-  status: null
+  status: undefined
 };
 
-export function ErrorReducer(state = initialState, action: ErrorActionTypes) {
+export function ErrorReducer(
+  state = initialState,
+  action: ErrorActionTypes
+): ErrorState {
   switch (action.type) {
     case GET_ERRORS:
       return {
