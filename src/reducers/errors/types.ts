@@ -9,13 +9,14 @@ export interface ErrorMessage {
 export interface ErrorState {
   msg: ErrorMessage;
   status: undefined | number;
+  timestamp: undefined | number;
 }
 
 export const GET_ERRORS = 'GET_ERRORS';
 
 interface GetErrorsAction {
   type: typeof GET_ERRORS;
-  payload: { msg: ErrorMessage; status?: number };
+  payload: { msg: ErrorMessage; status?: number; timestamp?: number };
 }
 
 export type ErrorActionTypes = GetErrorsAction;

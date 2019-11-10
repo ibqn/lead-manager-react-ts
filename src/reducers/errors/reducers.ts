@@ -2,7 +2,8 @@ import { GET_ERRORS, ErrorState, ErrorActionTypes } from './types';
 
 const initialState: ErrorState = {
   msg: {},
-  status: undefined
+  status: undefined,
+  timestamp: undefined
 };
 
 export function ErrorReducer(
@@ -13,7 +14,8 @@ export function ErrorReducer(
     case GET_ERRORS:
       return {
         msg: action.payload.msg,
-        status: action.payload.status
+        status: action.payload.status,
+        timestamp: action.payload.timestamp
       };
     default:
       return state;

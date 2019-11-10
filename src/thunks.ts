@@ -3,7 +3,7 @@ import { ThunkAction } from 'redux-thunk';
 import { getLeads, deleteLead, addLead } from './reducers/leads/actions';
 import { getErrors } from './reducers/errors/actions';
 import { AppState } from './store';
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 import { Lead, LeadShallow } from './reducers/leads/types';
 
 export const thunkGetLeads = (): ThunkAction<
@@ -17,14 +17,11 @@ export const thunkGetLeads = (): ThunkAction<
     const data = asyncResp.data as Lead[];
     dispatch(getLeads(data));
   } catch (error) {
-    console.log(`error ${error}`);
-    console.log(`error response ${error.response.data}`);
     const errors = {
       msg: error.response.data,
-      status: error.response.status
+      status: error.response.status,
+      timestamp: Date.now()
     };
-    console.log(`message ${error.response.data}`);
-    console.log(`status ${error.response.status}`);
     dispatch(getErrors(errors));
   }
 };
@@ -48,14 +45,13 @@ export const thunkAddLead = (
     const data = asyncResp.data as Lead;
     dispatch(addLead(data));
   } catch (error) {
-    console.log(`error ${error}`);
-    console.log('error response', error.response.data);
+    // const error: AxiosError = err;
+    // waiting for ?. operator support
     const errors = {
       msg: error.response.data,
-      status: error.response.status
+      status: error.response.status,
+      timestamp: Date.now()
     };
-    console.log(`message ${error.response.data}`);
-    console.log(`status ${error.response.status}`);
     dispatch(getErrors(errors));
   }
 };
